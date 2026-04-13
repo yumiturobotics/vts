@@ -1,0 +1,11 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api
+
+# Host
+Host: https://villagetechschool.com
+
+# Sitemaps
+Sitemap: https://villagetechschool.com/sitemap.xml
