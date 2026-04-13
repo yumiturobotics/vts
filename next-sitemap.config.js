@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: "https://villagetechschool.com",
+  siteUrl: "https://villagetechnologyschool.com",
   generateRobotsTxt: true,
   changefreq: "weekly",
   priority: 0.7,

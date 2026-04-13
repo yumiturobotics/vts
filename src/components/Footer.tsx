@@ -11,7 +11,7 @@ const quickLinks = [
 ];
 const productList = ["Humanoid Robots", "Educational Drones", "IoT Kits", "Arduino Kits", "Aeromodelling", "DIY STEM Kits"];
 const socials = [
-  { icon: FaLinkedin, href: "https://www.linkedin.com/company/villagetechschool", color: "#0A66C2" },
+  { icon: FaLinkedin, href: "https://www.linkedin.com/company/a-yumitu-robotics-pvt-ltd/about/?viewAsMember=true", color: "#0A66C2" },
   { icon: FaYoutube, href: "https://youtube.com/@yumiturobotics_0?si=DxJsWs0eqeWK0uXo", color: "#FF0000" },
 ];
 

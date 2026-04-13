@@ -169,7 +169,7 @@ export default function TestimonialsSection() {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#12223A] via-[#12223A]/50 to-transparent pointer-events-none z-10" />
                     <div className="absolute bottom-4 left-5 z-20">
                       <div className="flex gap-1">
-                        {Array.from({ length: t.rating }).map((_, j) => (
+                        {Array.from({ length: t.rating || 5 }).map((_, j) => (
                           <FaStar key={j} className="text-yellow-400 text-sm drop-shadow-lg" />
                         ))}
                       </div>

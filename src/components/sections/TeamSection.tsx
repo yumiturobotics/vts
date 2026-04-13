@@ -18,7 +18,7 @@ const teamMembers = [
     gradient: "from-cyan-500 to-blue-600",
     borderColor: "rgba(0,212,255,0.2)",
     linkedin: "https://www.linkedin.com/in/balaji-thirunavukkarasu-28ab28318/",
-    email: "mailto:balajithiru@villagetechschool.com"
+    email: "mailto:ceo@yumiturobotics.com"
   },
   {
     name: "Mr. Balaji Varadhan",
@@ -27,8 +27,7 @@ const teamMembers = [
     image: "/images/varadhan.jpeg",
     gradient: "from-orange-500 to-amber-600",
     borderColor: "rgba(245,124,0,0.2)",
-    linkedin: "https://www.linkedin.com/company/villagetechschool",
-    email: "mailto:balajivarathan@villagetechschool.com"
+    email: "mailto:coo@yumiturobotics.com"
   },
   {
     name: "Dr.Vasantharaj Rajagopal",
@@ -38,7 +37,6 @@ const teamMembers = [
     gradient: "from-purple-500 to-violet-600",
     borderColor: "rgba(139,92,246,0.2)",
     linkedin: "https://www.linkedin.com/in/dr-vasantharaj-rajagopal-064aa423/",
-    email: "mailto:vasanth@villagetechschool.com"
   },
   {
     name: "Mr. Yogeshwaran M",
