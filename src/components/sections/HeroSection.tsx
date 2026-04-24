@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaArrowRight, FaChevronDown, FaRocket, FaTrophy } from "react-icons/fa";
+import { FaArrowRight, FaChevronDown, FaRocket, FaTrophy, FaUserGraduate } from "react-icons/fa";
 import Image from "next/image";
 import Starfield from "@/components/Starfield";
 
@@ -41,48 +41,9 @@ const verticalStats = [
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentStat, setCurrentStat] = useState(0);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => { const t = setInterval(() => setCurrentSlide((p) => (p + 1) % bannerSlides.length), 5000); return () => clearInterval(t); }, []);
   useEffect(() => { const t = setInterval(() => setCurrentStat((p) => (p + 1) % verticalStats.length), 3000); return () => clearInterval(t); }, []);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-    const particles: { x: number; y: number; vx: number; vy: number; size: number; opacity: number }[] = [];
-    for (let i = 0; i < 30; i++) particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4, size: Math.random() * 2 + 0.5, opacity: Math.random() * 0.3 + 0.1 });
-    let id: number;
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach((p, i) => {
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0,212,255,${p.opacity})`; ctx.fill();
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const dx = p.x - p2.x;
-          const dy = p.y - p2.y;
-          const d = Math.sqrt(dx * dx + dy * dy);
-          if (d < 100) {
-            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(0,212,255,${0.05 * (1 - d / 100)})`;
-            ctx.lineWidth = 0.5; ctx.stroke();
-          }
-        }
-      });
-      id = requestAnimationFrame(animate);
-    };
-
-    animate();
-    const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
-    window.addEventListener("resize", resize);
-    return () => { cancelAnimationFrame(id); window.removeEventListener("resize", resize); };
-  }, []);
 
   return (
     <section id="home" className="relative min-h-[100svh] flex items-center pt-24 pb-12 overflow-hidden"
@@ -92,12 +53,10 @@ export default function HeroSection() {
       <Starfield />
       <AnimatePresence mode="wait">
         <motion.div key={currentSlide} initial={{ opacity: 0, scale: 1.08 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.98 }} transition={{ duration: 1.5, ease: [0.4, 0, 0, 1] }} className="absolute inset-0">
-          <Image src={bannerSlides[currentSlide].image} alt="STEM Lab" fill className="object-cover" priority />
+          <Image src={bannerSlides[currentSlide].image} alt="STEM Lab" fill className="object-cover" sizes="100vw" priority />
           <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(12,26,46,0.88) 0%, rgba(14,74,110,0.82) 40%, rgba(12,26,46,0.92) 100%)" }} />
         </motion.div>
       </AnimatePresence>
-
-      <canvas ref={canvasRef} className="absolute inset-0 z-[2]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full pt-20 pb-16 sm:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -115,12 +74,16 @@ export default function HeroSection() {
                 <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
                   <a href="#stem-labs" className="btn-primary">Explore Labs <FaArrowRight className="text-sm" /></a>
                   <a href="#contact" className="btn-secondary">Partner With Us</a>
+                  <a href="#apply" className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold text-sm text-white transition-all hover:scale-105 active:scale-95 shadow-lg"
+                    style={{ background: "linear-gradient(135deg, #00B4D8, #0077B6)", boxShadow: "0 4px 12px rgba(0,180,216,0.3)" }}>
+                    <FaUserGraduate className="text-sm" /> Apply for Internship
+                  </a>
                 </div>
               </motion.div>
             </AnimatePresence>
             <div className="flex gap-3 mt-12">
               {bannerSlides.map((_, i) => (
-                <button key={i} onClick={() => setCurrentSlide(i)} className={`h-1.5 rounded-full transition-all duration-500 ${i === currentSlide ? "w-12 bg-gradient-to-r from-cyan-400 to-orange-400" : "w-5 bg-white/25 hover:bg-white/50"}`} />
+                <button key={i} onClick={() => setCurrentSlide(i)} aria-label={`Go to slide ${i + 1}`} className={`h-1.5 rounded-full transition-all duration-500 ${i === currentSlide ? "w-12 bg-gradient-to-r from-cyan-400 to-orange-400" : "w-5 bg-white/25 hover:bg-white/50"}`} />
               ))}
             </div>
           </div>
@@ -136,12 +99,12 @@ export default function HeroSection() {
     alt="Veetuku Oru Vignani"
     fill
     className="object-contain"
+    sizes="(max-width: 1024px) 100vw, 400px"
   />
 
   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
     <div>
       <p className="text-white font-bold text-sm flex items-center gap-2">
-        {/* Replace Trophy with Broadcast / Media Icon */}
         <span className="text-cyan-400 text-lg">📡</span>
         Veetuku Oru Vignani
       </p>
@@ -170,7 +133,7 @@ export default function HeroSection() {
             </div>
 
             <div className="rounded-2xl overflow-hidden relative h-40" style={{ border: "1px solid rgba(0,212,255,0.15)" }}>
-              <Image src="/images/award.jpeg" alt="Award Winning" fill className="object-cover" />
+              <Image src="/images/award.jpeg" alt="Award Winning" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 400px" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
                 <div>
                   <p className="text-white font-bold text-sm flex items-center gap-1.5"><FaTrophy className="text-yellow-400" /> Award Winning</p>
@@ -183,7 +146,7 @@ export default function HeroSection() {
       </div>
 
       <motion.div animate={{ y: [0, 12, 0] }} transition={{ repeat: Infinity, duration: 2.5, ease: [0.4, 0, 0, 1] }} className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-        <a href="#about" className="flex flex-col items-center gap-2 text-white/40 hover:text-white/70 transition-colors">
+        <a href="#about" className="flex flex-col items-center gap-2 text-white/40 hover:text-white/70 transition-colors" aria-label="Scroll to explore">
           <span className="text-xs uppercase tracking-widest font-medium">Explore</span>
           <FaChevronDown className="text-sm" />
         </a>

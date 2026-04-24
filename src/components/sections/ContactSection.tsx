@@ -89,7 +89,7 @@ export default function ContactSection() {
               {[
                 { icon: FaPhone, label: "Phone", value: "+91 85111 16253", href: "tel:+918511116253", color: "from-cyan-500 to-blue-600" },
                 { icon: FaEnvelope, label: "Email", value: "yumiturobotics@gmail.com", href: "mailto:yumiturobotics@gmail.com", color: "from-orange-500 to-amber-600" },
-                { icon: FaMapMarkerAlt, label: "Address", value: "MIT Campus, Chennai, Tamil Nadu", href: "#", color: "from-green-500 to-emerald-600" },
+                { icon: FaMapMarkerAlt, label: "Address", value: "No.72, Gandhi Nagar Main, Virugambakkam, Chennai - 600092", href: "https://maps.google.com/?q=No.72+Gandhi+Nagar+Main+Virugambakkam+Chennai+600092", color: "from-green-500 to-emerald-600" },
                 { icon: FaClock, label: "Working Hours", value: "Mon-Sat: 9AM - 6PM", href: "#", color: "from-purple-500 to-violet-600" },
               ].map((item) => (
                 <a key={item.label} href={item.href} className="rounded-2xl p-5 group transition-all hover:-translate-y-1" style={{ background: "linear-gradient(145deg, rgba(30,47,80,0.95), rgba(18,34,58,0.95))", border: "1px solid rgba(255,255,255,0.08)" }}>
@@ -110,8 +110,8 @@ export default function ContactSection() {
             </a>
 
             <div className="rounded-2xl overflow-hidden h-56 shadow-lg" style={{ border: "1px solid rgba(255,255,255,0.08)" }}>
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.583344670059!2d80.13788737507584!3d12.934444587376722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525fac595c29ff%3A0xb76082ae18b51418!2sMadras%20Institute%20of%20Technology%2C%20Anna%20University!5e0!3m2!1sen!2sin!4v1"
-                width="100%" height="100%" style={{ border: 0, filter: "brightness(0.85) contrast(1.1) saturate(0.8)" }} allowFullScreen loading="lazy" title="VTS Location" />
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.5!2d80.1849!3d13.0496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDAyJzU4LjYiTiA4MMKwMTEnMDUuNiJF!5e0!3m2!1sen!2sin!4v1&q=No.72+Gandhi+Nagar+Main+Virugambakkam+Chennai+600092"
+                width="100%" height="100%" style={{ border: 0, filter: "brightness(0.85) contrast(1.1) saturate(0.8)" }} allowFullScreen loading="lazy" title="VTS Office Location - Virugambakkam, Chennai" referrerPolicy="no-referrer-when-downgrade" />
             </div>
           </motion.div>
 
@@ -141,8 +141,9 @@ export default function ContactSection() {
               </div>
               <div className="grid grid-cols-1 gap-4">
                 <div>
-                  <label className="text-gray-400 text-xs font-semibold mb-1.5 block">Subject *</label>
-                  <select required value={formData.subject} onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                  <label htmlFor="contact-subject" className="text-gray-400 text-xs font-semibold mb-1.5 block">Subject *</label>
+                  <select id="contact-subject" required value={formData.subject} onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    aria-label="Select a topic"
                     className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-cyan-500/50 transition-colors">
                     <option value="" className="bg-gray-900">Select a topic</option>
                     {["Lab Setup", "Product Enquiry", "Workshop", "Internship", "Partnership", "Other"].map((o) => (<option key={o} value={o.toLowerCase()} className="bg-gray-900">{o}</option>))}

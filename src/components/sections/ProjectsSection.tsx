@@ -93,7 +93,7 @@ export default function ProjectsSection() {
               <motion.div key={p.id} layout initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} transition={{ delay: i * 0.05 }}
                 className="card-dark overflow-hidden cursor-pointer group" onClick={() => setSelected(p)}>
                 <div className="h-44 relative overflow-hidden">
-                  <Image src={p.image} alt={p.title} fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
+                  <Image src={p.image} alt={p.title} fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center">
                     <span className="opacity-0 group-hover:opacity-100 text-white text-sm font-semibold bg-white/20 px-4 py-2 rounded-full backdrop-blur-sm transition-opacity">View Details</span>
@@ -121,7 +121,7 @@ export default function ProjectsSection() {
               className="relative w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto"
               style={{ background: "linear-gradient(145deg, #1E2F50, #12223A)", border: "1px solid rgba(0,212,255,0.15)" }}>
               <div className="h-52 relative">
-                <Image src={selected.image} alt={selected.title} fill className="object-cover" />
+                <Image src={selected.image} alt={selected.title} fill className="object-cover" sizes="(max-width: 640px) 100vw, 512px" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#12223A]/90 to-transparent" />
                 <button onClick={() => setSelected(null)} className="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/30 flex items-center justify-center text-white backdrop-blur-sm hover:bg-black/50 transition-colors"><FaTimes /></button>
               </div>

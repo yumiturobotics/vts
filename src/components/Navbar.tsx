@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaUserGraduate } from "react-icons/fa";
 
 const navItems = [
   { label: "Home", href: "#home" },
@@ -80,7 +80,7 @@ export default function Navbar() {
 
           <Link href="/" className="flex items-center gap-2.5 group pl-1 sm:pl-2">
             <div className="relative h-20 w-56 flex items-center justify-center group-hover:scale-105 transition-all duration-300 mt-1">
-              <Image src="/images/vts-new-logo.png" alt="VTS Logo" fill className="object-contain" />
+              <Image src="/images/vts-new-logo.png" alt="Village Technology School Logo" fill className="object-contain" sizes="224px" />
             </div>
             <span className="font-heading font-bold text-white text-base sm:text-lg tracking-wide group-hover:text-cyan-400 group-hover:drop-shadow-[0_0_8px_rgba(0,212,255,0.6)] transition-all duration-300">VTS</span>
           </Link>
@@ -116,12 +116,17 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-3">
+            <a href="#apply" className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold text-white transition-all shadow-lg hover:scale-105 active:scale-95"
+              style={{ background: "linear-gradient(135deg, #00B4D8, #0077B6)", boxShadow: "0 4px 12px rgba(0,180,216,0.3)" }}>
+              <FaUserGraduate className="text-xs" /> Apply Now
+            </a>
             <a href="#contact" className="hidden sm:inline-block px-5 py-2 rounded-full text-sm font-semibold text-white transition-all shadow-lg hover:scale-105 active:scale-95"
               style={{ background: "linear-gradient(135deg, #F57C00, #FF9800)", boxShadow: "0 4px 12px rgba(245,124,0,0.3)" }}>
               Contact Us
             </a>
 
             <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden text-white text-xl p-2 rounded-xl transition-all active:scale-90"
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
               style={{ background: mobileOpen ? "rgba(0,212,255,0.15)" : "transparent" }}>
               {mobileOpen ? <FaTimes /> : <FaBars />}
             </button>
@@ -138,9 +143,10 @@ export default function Navbar() {
 
               <div className="flex items-center justify-between mb-8">
                 <div className="relative h-14 w-44">
-                  <Image src="/images/vts-new-logo.png" alt="VTS Logo" fill className="object-contain" />
+                  <Image src="/images/vts-new-logo.png" alt="VTS Logo" fill className="object-contain" sizes="176px" />
                 </div>
                 <button onClick={() => setMobileOpen(false)} className="w-10 h-10 rounded-full flex items-center justify-center text-white transition-all active:scale-90"
+                  aria-label="Close menu"
                   style={{ background: "rgba(0,212,255,0.15)", border: "1px solid rgba(0,212,255,0.2)" }}>
                   <FaTimes />
                 </button>
@@ -163,8 +169,13 @@ export default function Navbar() {
                   </motion.a>
                 ))}
 
+                <motion.a href="#apply" onClick={() => setMobileOpen(false)} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.3 }}
+                  className="flex items-center justify-center gap-2 mt-4 px-5 py-3.5 rounded-2xl text-sm font-semibold text-center text-white shadow-lg active:scale-95 transition-all" style={{ background: "linear-gradient(135deg, #00B4D8, #0077B6)" }}>
+                  <FaUserGraduate className="text-sm" /> Apply for Internship
+                </motion.a>
+
                 <motion.a href="#contact" onClick={() => setMobileOpen(false)} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.3 }}
-                  className="block mt-6 px-5 py-3.5 rounded-2xl text-sm font-semibold text-center text-white shadow-lg active:scale-95 transition-all" style={{ background: "linear-gradient(135deg, #F57C00, #FF9800)" }}>
+                  className="block mt-2 px-5 py-3.5 rounded-2xl text-sm font-semibold text-center text-white shadow-lg active:scale-95 transition-all" style={{ background: "linear-gradient(135deg, #F57C00, #FF9800)" }}>
                   Contact Us
                 </motion.a>
               </div>

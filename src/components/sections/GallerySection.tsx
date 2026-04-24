@@ -145,7 +145,7 @@ export default function GallerySection() {
                         className="relative group cursor-pointer rounded-2xl overflow-hidden shadow-lg aspect-square"
                         onClick={() => setSelected({ type: "image", image: item.image, title: item.title, category: item.category })}
                       >
-                        <Image src={item.image} alt={item.title} fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
+                        <Image src={item.image} alt={item.title} fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-end p-4">
                           <FaExpand className="text-white/80 text-lg mb-2" />
                           <p className="text-white text-sm font-semibold text-center">{item.title}</p>
@@ -157,6 +157,7 @@ export default function GallerySection() {
                 </Swiper>
                 <div className="flex justify-center gap-5 mt-8">
                   <button onClick={() => imageSwiperRef.current?.slidePrev()}
+                    aria-label="Previous image"
                     className="bubble-btn text-gray-500 hover:text-cyan-600"
                     style={{
                       background: "linear-gradient(135deg, rgba(0,212,255,0.08), rgba(59,130,246,0.12))",
@@ -166,6 +167,7 @@ export default function GallerySection() {
                     <FaChevronLeft className="text-sm" />
                   </button>
                   <button onClick={() => imageSwiperRef.current?.slideNext()}
+                    aria-label="Next image"
                     className="bubble-btn text-gray-500 hover:text-cyan-600"
                     style={{
                       background: "linear-gradient(135deg, rgba(59,130,246,0.12), rgba(0,212,255,0.08))",
@@ -206,7 +208,7 @@ export default function GallerySection() {
                     className="relative group cursor-pointer rounded-2xl overflow-hidden shadow-xl"
                     onClick={() => setSelected({ type: "video", youtubeId: v.youtubeId, title: v.title })}>
                     <div className="relative aspect-video w-full overflow-hidden">
-                      <Image src={`https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg`} alt={v.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                      <Image src={`https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg`} alt={v.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw" />
                       <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors flex items-center justify-center">
                         <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center group-hover:scale-110 transition-transform">
                           <FaPlay className="text-white text-lg ml-1" />
@@ -222,6 +224,7 @@ export default function GallerySection() {
             </Swiper>
             <div className="flex justify-center gap-5 mt-6">
               <button onClick={() => videoSwiperRef.current?.slidePrev()}
+                aria-label="Previous video"
                 className="bubble-btn text-gray-500 hover:text-red-500"
                 style={{
                   background: "linear-gradient(135deg, rgba(239,68,68,0.08), rgba(245,124,0,0.1))",
@@ -231,6 +234,7 @@ export default function GallerySection() {
                 <FaChevronLeft className="text-sm" />
               </button>
               <button onClick={() => videoSwiperRef.current?.slideNext()}
+                aria-label="Next video"
                 className="bubble-btn text-gray-500 hover:text-red-500"
                 style={{
                   background: "linear-gradient(135deg, rgba(245,124,0,0.1), rgba(239,68,68,0.08))",
@@ -256,7 +260,7 @@ export default function GallerySection() {
               {selected.type === "image" ? (
                 <div className="relative w-full h-full flex flex-col items-center justify-center">
                   <div className="relative w-full flex-1 max-h-[80vh]">
-                    <Image src={selected.image} alt={selected.title} fill className="object-contain" />
+                    <Image src={selected.image} alt={selected.title} fill className="object-contain" sizes="95vw" />
                   </div>
                   <div className="mt-4 text-center">
                     <p className="text-white font-bold text-xl" style={{ fontFamily: "'Poppins', sans-serif" }}>{selected.title}</p>

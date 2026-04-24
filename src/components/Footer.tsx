@@ -39,7 +39,7 @@ export default function Footer() {
           <div>
             <Link href="/" className="flex items-center gap-3 mb-5">
               <div className="relative h-16 w-52 flex items-center justify-center">
-                <Image src="/images/vts-new-logo.png" alt="VTS Logo" fill className="object-contain" />
+                <Image src="/images/vts-new-logo.png" alt="Village Technology School Logo" fill className="object-contain" sizes="208px" />
               </div>
               <div>
                 <p className="font-heading font-bold text-white text-lg">Village Technology</p>
@@ -51,7 +51,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-2.5">
               {socials.map((s) => (
-                <a key={s.color} href={s.href} className="w-9 h-9 rounded-lg flex items-center justify-center text-gray-400 transition-all hover:-translate-y-1" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                <a key={s.color} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.icon === FaLinkedin ? "LinkedIn" : "YouTube"} className="w-9 h-9 rounded-lg flex items-center justify-center text-gray-400 transition-all hover:-translate-y-1" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
                   <s.icon className="text-sm" />
                 </a>
               ))}
@@ -59,21 +59,21 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-heading font-bold text-white mb-5 text-sm uppercase tracking-wider">Quick Links</h4>
+            <h3 className="font-heading font-bold text-white mb-5 text-sm uppercase tracking-wider">Quick Links</h3>
             <ul className="space-y-3">
               {quickLinks.map((l) => (<li key={l.name}><a href={l.href} className="text-gray-400 text-sm hover:text-cyan-400 transition-colors">{l.name}</a></li>))}
             </ul>
           </div>
 
           <div>
-            <h4 className="font-heading font-bold text-white mb-5 text-sm uppercase tracking-wider">Products</h4>
+            <h3 className="font-heading font-bold text-white mb-5 text-sm uppercase tracking-wider">Products</h3>
             <ul className="space-y-3">
               {productList.map((p) => (<li key={p}><a href="#products" className="text-gray-400 text-sm hover:text-cyan-400 transition-colors">{p}</a></li>))}
             </ul>
           </div>
 
           <div>
-            <h4 className="font-heading font-bold text-white mb-5 text-sm uppercase tracking-wider">Contact</h4>
+            <h3 className="font-heading font-bold text-white mb-5 text-sm uppercase tracking-wider">Contact</h3>
             <div className="space-y-4 mb-6">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 text-xs"><FaPhone /></div>
@@ -85,7 +85,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center text-green-400 text-xs"><FaMapMarkerAlt /></div>
-                <span className="text-gray-400 text-sm">MIT Campus, Chennai</span>
+                <span className="text-gray-400 text-sm">No.72, Gandhi Nagar Main, Virugambakkam, Chennai - 600092</span>
               </div>
             </div>
             

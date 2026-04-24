@@ -151,7 +151,7 @@ export default function ProductsSection() {
             <motion.div key={p.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07 }}
               className="card-dark overflow-hidden cursor-pointer group" onClick={() => setSelected(p)}>
               <div className="h-40 relative overflow-hidden">
-                <Image src={p.image} alt={p.name} fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
+                <Image src={p.image} alt={p.name} fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#12223A] to-transparent" />
                 <div className={`absolute bottom-3 left-3 w-10 h-10 rounded-lg bg-gradient-to-br ${p.color} flex items-center justify-center text-white text-lg shadow-lg`}><p.icon /></div>
               </div>
@@ -175,7 +175,7 @@ export default function ProductsSection() {
               className="relative w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto"
               style={{ background: "linear-gradient(145deg, #1E2F50, #12223A)", border: "1px solid rgba(0,212,255,0.15)" }}>
               <div className="h-48 relative">
-                <Image src={selected.image} alt={selected.name} fill className="object-cover" />
+                <Image src={selected.image} alt={selected.name} fill className="object-cover" sizes="(max-width: 640px) 100vw, 512px" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#12223A]/90 to-transparent" />
                 <button onClick={() => setSelected(null)} className="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/50 transition-colors"><FaTimes /></button>
               </div>

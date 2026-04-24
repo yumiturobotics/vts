@@ -98,7 +98,7 @@ export default function TestimonialsSection() {
           <div className="flex flex-col md:flex-row">
             {/* Video Preview Side */}
             <div className="w-full md:w-2/5 relative h-72 md:h-auto overflow-hidden cursor-pointer" onClick={() => featuredTestimonial.youtubeId && setPlayingYouTube(featuredTestimonial.youtubeId)}>
-              <Image src={featuredTestimonial.image} alt={featuredTestimonial.name} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+              <Image src={featuredTestimonial.image} alt={featuredTestimonial.name} fill className="object-cover transition-transform duration-700 group-hover:scale-110" sizes="(max-width: 768px) 100vw, 40vw" />
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors z-20 flex items-center justify-center">
                 <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-cyan-500/90 flex items-center justify-center shadow-[0_0_25px_rgba(0,212,255,0.8)] pl-1 md:pl-2 hover:bg-cyan-400 hover:scale-110 transition-all duration-300 ring-4 ring-cyan-500/30">
                   <FaPlay className="text-white text-2xl md:text-3xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
@@ -165,7 +165,7 @@ export default function TestimonialsSection() {
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-orange-500 opacity-60" />
 
                   <div className="relative h-48 overflow-hidden group/img">
-                    <Image src={t.image} alt={t.name} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <Image src={t.image} alt={t.name} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#12223A] via-[#12223A]/50 to-transparent pointer-events-none z-10" />
                     <div className="absolute bottom-4 left-5 z-20">
                       <div className="flex gap-1">
@@ -186,7 +186,7 @@ export default function TestimonialsSection() {
                     <div className="flex items-center gap-3 border-t border-white/8 pt-4">
                       <div className="w-11 h-11 rounded-full overflow-hidden relative flex-shrink-0 ring-2 ring-offset-1 ring-offset-[#12223a]"
                         style={{ boxShadow: `0 0 12px ${typeColors[t.type]?.glow}` }}>
-                        <Image src={t.image} alt={t.name} fill className="object-cover" />
+                        <Image src={t.image} alt={t.name} fill className="object-cover" sizes="44px" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-white font-semibold text-sm truncate">{t.name}</p>
@@ -205,6 +205,7 @@ export default function TestimonialsSection() {
 
           <div className="flex justify-center gap-5 mt-8">
             <button onClick={() => swiperRef.current?.slidePrev()}
+              aria-label="Previous testimonial"
               className="bubble-btn text-white/70 hover:text-cyan-400"
               style={{
                 background: "linear-gradient(135deg, rgba(0,212,255,0.12), rgba(14,74,110,0.2))",
@@ -214,6 +215,7 @@ export default function TestimonialsSection() {
               <FaChevronLeft className="text-sm" />
             </button>
             <button onClick={() => swiperRef.current?.slideNext()}
+              aria-label="Next testimonial"
               className="bubble-btn text-white/70 hover:text-cyan-400"
               style={{
                 background: "linear-gradient(135deg, rgba(14,74,110,0.2), rgba(0,212,255,0.12))",

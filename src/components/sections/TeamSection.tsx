@@ -120,6 +120,21 @@ export default function TeamSection() {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
+    const checkHash = () => {
+      if (window.location.hash === "#apply") {
+        setTimeout(() => {
+          const el = document.getElementById("apply");
+          if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+          setShowForm(true);
+        }, 500);
+      }
+    };
+    checkHash();
+    window.addEventListener("hashchange", checkHash);
+    return () => window.removeEventListener("hashchange", checkHash);
+  }, []);
+
+  useEffect(() => {
     if (showForm) {
       document.body.style.overflow = "hidden";
     } else {
@@ -228,6 +243,7 @@ export default function TeamSection() {
                     alt={member.name}
                     width={144}
                     height={144}
+                    sizes="144px"
                     className="w-full h-full object-cover group-hover:scale-125 transition-transform duration-700"
                   />
                 </div>
@@ -236,21 +252,23 @@ export default function TeamSection() {
                 </div>
               </div>
 
-              <h4 className="font-heading font-bold text-white text-lg mb-1">{member.name}</h4>
+              <h3 className="font-heading font-bold text-white text-lg mb-1">{member.name}</h3>
               <p className="text-sm font-medium mb-3" style={{ color: member.borderColor.replace("0.2", "1") }}>{member.role}</p>
               <p className="text-gray-400 text-sm leading-relaxed mb-5 flex-1">{member.desc}</p>
 
               <div className="flex items-center justify-center gap-2 mt-auto border-t border-white/5 pt-4">
                 {member.linkedin && (
-                  <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg flex items-center justify-center text-gray-400 hover:text-cyan-400 transition-all hover:-translate-y-0.5"
+                  <a href={member.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`LinkedIn profile of ${member.name}`} className="w-9 h-9 rounded-lg flex items-center justify-center text-gray-400 hover:text-cyan-400 transition-all hover:-translate-y-0.5"
                     style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
                     <FaLinkedin className="text-sm" />
                   </a>
                 )}
-                <a href={member.email} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg flex items-center justify-center text-gray-400 hover:text-orange-400 transition-all hover:-translate-y-0.5"
-                  style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                  <FaEnvelope className="text-sm" />
-                </a>
+                {member.email && (
+                  <a href={member.email} target="_blank" rel="noopener noreferrer" aria-label={`Email ${member.name}`} className="w-9 h-9 rounded-lg flex items-center justify-center text-gray-400 hover:text-orange-400 transition-all hover:-translate-y-0.5"
+                    style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                    <FaEnvelope className="text-sm" />
+                  </a>
+                )}
               </div>
             </motion.div>
           ))}
@@ -265,7 +283,7 @@ export default function TeamSection() {
                 <div className={`w-24 h-24 rounded-full bg-gradient-to-br ${intern.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500 overflow-hidden`}
                   style={{ boxShadow: `0 0 25px ${intern.borderColor}` }}>
                   {intern.image ? (
-                    <Image src={intern.image} alt={intern.name} width={96} height={96} className="w-full h-full object-cover" />
+                    <Image src={intern.image} alt={intern.name} width={96} height={96} sizes="96px" className="w-full h-full object-cover" />
                   ) : (
                     <FaUserGraduate className="text-white text-3xl" />
                   )}
@@ -275,12 +293,12 @@ export default function TeamSection() {
                 </div>
               </div>
 
-              <h4 className="font-heading font-bold text-white text-lg mb-1">{intern.name}</h4>
+              <h3 className="font-heading font-bold text-white text-lg mb-1">{intern.name}</h3>
               <p className="text-sm font-medium" style={{ color: intern.borderColor.replace("0.3", "1") }}>{intern.role}</p>
             </motion.div>
           ))}
 
-          <motion.div onClick={() => setShowForm(true)} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          <motion.div id="apply" onClick={() => setShowForm(true)} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             transition={{ delay: 0.9 }}
             className="rounded-3xl p-7 text-center group transition-all duration-500 hover:-translate-y-3 flex flex-col items-center justify-center cursor-pointer"
             style={{ background: "linear-gradient(145deg, rgba(30,47,80,0.5), rgba(18,34,58,0.5))", border: "2px dashed rgba(0,212,255,0.25)" }}>
@@ -289,7 +307,7 @@ export default function TeamSection() {
               style={{ background: "rgba(0,212,255,0.1)", border: "2px dashed rgba(0,212,255,0.3)" }}>
               <FaPlus className="text-2xl text-cyan-400 group-hover:rotate-90 transition-transform duration-500" />
             </div>
-            <h4 className="font-heading font-bold text-white text-lg mb-2">Join as VTS Team</h4>
+            <h3 className="font-heading font-bold text-white text-lg mb-2">Join as VTS Team</h3>
             <p className="text-gray-400 text-sm leading-relaxed mb-4">Be part of the VTS innovation team and gain real-world experience in STEM.</p>
             <span className="text-cyan-400 text-sm font-semibold group-hover:underline transition-all">Apply Now →</span>
           </motion.div>

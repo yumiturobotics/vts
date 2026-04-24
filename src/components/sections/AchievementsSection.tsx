@@ -130,6 +130,7 @@ export default function AchievementsSection() {
                   alt={a.title}
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div
@@ -167,6 +168,7 @@ export default function AchievementsSection() {
                 alt={item.title}
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-500"
+                sizes="(max-width: 768px) 100vw, 33vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-5">
                 <p className="text-white font-bold text-lg">{item.title}</p>
@@ -183,7 +185,7 @@ export default function AchievementsSection() {
             <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9, y: 20 }}
               className="relative w-full max-w-lg bg-white rounded-3xl overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto">
               <div className="relative h-64">
-                <Image src={selected.image} alt={selected.title} fill className="object-cover" />
+                <Image src={selected.image} alt={selected.title} fill className="object-cover" sizes="(max-width: 640px) 100vw, 512px" />
                 <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/30 to-transparent" />
                 <button onClick={() => setSelected(null)} className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/50 transition-colors">
                   <FaTimes />

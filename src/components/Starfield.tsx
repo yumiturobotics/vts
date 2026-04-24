@@ -32,7 +32,7 @@ export default function Starfield({ color = "rgba(0,212,255,", isLight = false }
     }
 
     const stars: Star[] = [];
-    const starCount = 80;
+    const starCount = 40;
 
     for (let i = 0; i < starCount; i++) {
       stars.push({
@@ -42,8 +42,8 @@ export default function Starfield({ color = "rgba(0,212,255,", isLight = false }
         opacity: Math.random() * 0.5 + 0.1,
         twinkleSpeed: Math.random() * 0.02 + 0.005,
         twinkleOffset: Math.random() * Math.PI * 2,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
       });
     }
 
@@ -91,11 +91,11 @@ export default function Starfield({ color = "rgba(0,212,255,", isLight = false }
           const dx = star.x - other.x;
           const dy = star.y - other.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
+          if (dist < 80) {
             ctx.beginPath();
             ctx.moveTo(star.x, star.y);
             ctx.lineTo(other.x, other.y);
-            ctx.strokeStyle = `${color}${0.05 * (1 - dist / 120)})`;
+            ctx.strokeStyle = `${color}${0.04 * (1 - dist / 80)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -110,5 +110,5 @@ export default function Starfield({ color = "rgba(0,212,255,", isLight = false }
     return () => { cancelAnimationFrame(animId); window.removeEventListener("resize", resize); };
   }, [color, isLight]);
 
-  return <canvas ref={canvasRef} className="absolute inset-0 z-[1] pointer-events-none" />;
+  return <canvas ref={canvasRef} className="absolute inset-0 z-[1] pointer-events-none" style={{ willChange: "transform" }} />;
 }
