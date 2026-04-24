@@ -53,7 +53,7 @@ export default function HeroSection() {
       <Starfield />
       <AnimatePresence mode="wait">
         <motion.div key={currentSlide} initial={{ opacity: 0, scale: 1.08 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.98 }} transition={{ duration: 1.5, ease: [0.4, 0, 0, 1] }} className="absolute inset-0">
-          <Image src={bannerSlides[currentSlide].image} alt="STEM Lab" fill className="object-cover" sizes="100vw" priority />
+          <Image src={bannerSlides[currentSlide].image} alt="STEM Lab" fill className="object-cover" sizes="100vw" quality={60} priority />
           <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(12,26,46,0.88) 0%, rgba(14,74,110,0.82) 40%, rgba(12,26,46,0.92) 100%)" }} />
         </motion.div>
       </AnimatePresence>
@@ -99,7 +99,8 @@ export default function HeroSection() {
     alt="Veetuku Oru Vignani"
     fill
     className="object-contain"
-    sizes="(max-width: 1024px) 100vw, 400px"
+    sizes="(max-width: 1024px) 70vw, 400px"
+    quality={60}
   />
 
   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
@@ -133,7 +134,7 @@ export default function HeroSection() {
             </div>
 
             <div className="rounded-2xl overflow-hidden relative h-40" style={{ border: "1px solid rgba(0,212,255,0.15)" }}>
-              <Image src="/images/award.jpeg" alt="Award Winning" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 400px" />
+              <Image src="/images/award.jpeg" alt="Award Winning" fill className="object-cover" sizes="(max-width: 1024px) 70vw, 400px" quality={60} />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
                 <div>
                   <p className="text-white font-bold text-sm flex items-center gap-1.5"><FaTrophy className="text-yellow-400" /> Award Winning</p>

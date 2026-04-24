@@ -80,7 +80,7 @@ export default function Navbar() {
 
           <Link href="/" className="flex items-center gap-2.5 group pl-1 sm:pl-2">
             <div className="relative h-20 w-56 flex items-center justify-center group-hover:scale-105 transition-all duration-300 mt-1">
-              <Image src="/images/vts-new-logo.png" alt="Village Technology School Logo" fill className="object-contain" sizes="224px" />
+              <Image src="/images/vts-new-logo.png" alt="Village Technology School Logo" fill className="object-contain" sizes="(max-width: 640px) 150px, 224px" quality={60} />
             </div>
             <span className="font-heading font-bold text-white text-base sm:text-lg tracking-wide group-hover:text-cyan-400 group-hover:drop-shadow-[0_0_8px_rgba(0,212,255,0.6)] transition-all duration-300">VTS</span>
           </Link>

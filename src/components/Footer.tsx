@@ -39,7 +39,7 @@ export default function Footer() {
           <div>
             <Link href="/" className="flex items-center gap-3 mb-5">
               <div className="relative h-16 w-52 flex items-center justify-center">
-                <Image src="/images/vts-new-logo.png" alt="Village Technology School Logo" fill className="object-contain" sizes="208px" />
+                <Image src="/images/vts-new-logo.png" alt="Village Technology School Logo" fill className="object-contain" sizes="(max-width: 640px) 150px, 208px" quality={60} />
               </div>
               <div>
                 <p className="font-heading font-bold text-white text-lg">Village Technology</p>
