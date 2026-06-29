@@ -87,16 +87,19 @@ const teamMembers = [
     borderColor: "rgba(133, 204, 74, 0.2)",
     email: "mailto:selvipooja61@gmail.com"
   },
+  {
+    name: "Ms. Sakthi Priya V",
+    role: "STEM Trainer",
+    desc: "Training students and educators in robotics, IoT, and programming across partner schools.",
+    image: "/images/SAKTHI PRIYA V.jpeg",
+    gradient: "from-teal-500 to-cyan-600",
+    borderColor: "rgba(87, 187, 78, 0.8)",
+    linkedin: "https://www.linkedin.com/in/sakthi-priya-v/",
+    email: "mailto:sakthipriyamechatronics@gmail.com"
+  },
 ];
 
 const interns = [
-  {
-    name: "Sakthi Priya V",
-    role: "IoT Intern",
-    image: "/images/SAKTHI PRIYA V.jpeg",
-    gradient: "from-cyan-400 to-blue-500",
-    borderColor: "rgba(0,212,255,0.3)",
-  },
   {
     name: "Devi Dharshini M",
     role: "Robotics Engineering Intern",
@@ -104,12 +107,14 @@ const interns = [
     gradient: "from-orange-400 to-amber-500",
     borderColor: "rgba(245,124,0,0.3)",
   },
+  
   {
-    name: "Rajasree S",
-    role: "IoT & Embedded Systems Intern",
-    image: "/images/intern2.jpeg",
+    name: "Mogan J",
+    role: "IoT Intern",
+    image: "/images/mogan.jpeg",
     gradient: "from-purple-400 to-violet-500",
-    borderColor: "rgba(139,92,246,0.3)",
+    borderColor: "rgba(164, 185, 87, 0.57)",
+    
   },
 ];
 
@@ -203,6 +208,7 @@ export default function TeamSection() {
     } finally {
       setSubmitting(false);
     }
+    
   };
 
   return (

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { FaBars, FaTimes, FaUserGraduate } from "react-icons/fa";
+import { FaBars, FaTimes, FaUserGraduate, FaBriefcase } from "react-icons/fa";
 
 const navItems = [
   { label: "Home", href: "#home" },
@@ -16,6 +16,11 @@ const navItems = [
   { label: "Team", href: "#team" },
   { label: "Gallery", href: "#gallery" },
   { label: "Contact", href: "#contact" },
+];
+
+// Page-level links (not hash anchors)
+const pageLinks = [
+  { label: "Careers", href: "/careers", icon: FaBriefcase },
 ];
 
 export default function Navbar() {
@@ -116,10 +121,10 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-3">
-            <a href="#apply" className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold text-white transition-all shadow-lg hover:scale-105 active:scale-95"
+            <Link href="/careers" className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold text-white transition-all shadow-lg hover:scale-105 active:scale-95"
               style={{ background: "linear-gradient(135deg, #00B4D8, #0077B6)", boxShadow: "0 4px 12px rgba(0,180,216,0.3)" }}>
-              <FaUserGraduate className="text-xs" /> Apply Now
-            </a>
+              <FaBriefcase className="text-xs" /> Careers
+            </Link>
             <a href="#contact" className="hidden sm:inline-block px-5 py-2 rounded-full text-sm font-semibold text-white transition-all shadow-lg hover:scale-105 active:scale-95"
               style={{ background: "linear-gradient(135deg, #F57C00, #FF9800)", boxShadow: "0 4px 12px rgba(245,124,0,0.3)" }}>
               Contact Us
@@ -169,10 +174,12 @@ export default function Navbar() {
                   </motion.a>
                 ))}
 
-                <motion.a href="#apply" onClick={() => setMobileOpen(false)} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.3 }}
-                  className="flex items-center justify-center gap-2 mt-4 px-5 py-3.5 rounded-2xl text-sm font-semibold text-center text-white shadow-lg active:scale-95 transition-all" style={{ background: "linear-gradient(135deg, #00B4D8, #0077B6)" }}>
-                  <FaUserGraduate className="text-sm" /> Apply for Internship
-                </motion.a>
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.3 }}>
+                  <Link href="/careers" onClick={() => setMobileOpen(false)}
+                    className="flex items-center justify-center gap-2 mt-4 px-5 py-3.5 rounded-2xl text-sm font-semibold text-center text-white shadow-lg active:scale-95 transition-all" style={{ background: "linear-gradient(135deg, #00B4D8, #0077B6)" }}>
+                    <FaBriefcase className="text-sm" /> View Careers
+                  </Link>
+                </motion.div>
 
                 <motion.a href="#contact" onClick={() => setMobileOpen(false)} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.3 }}
                   className="block mt-2 px-5 py-3.5 rounded-2xl text-sm font-semibold text-center text-white shadow-lg active:scale-95 transition-all" style={{ background: "linear-gradient(135deg, #F57C00, #FF9800)" }}>

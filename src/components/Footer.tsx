@@ -8,6 +8,7 @@ import { FaLinkedin, FaYoutube, FaPhone, FaEnvelope, FaMapMarkerAlt, FaCheck } f
 const quickLinks = [
   { name: "Home", href: "#home" }, { name: "About", href: "#about" }, { name: "Products", href: "#products" },
   { name: "Services", href: "#services" }, { name: "Projects", href: "#projects" },
+  { name: "Careers", href: "/careers" },
 ];
 const productList = ["Humanoid Robots", "Educational Drones", "IoT Kits", "Arduino Kits", "Aeromodelling", "DIY STEM Kits"];
 const socials = [
@@ -61,7 +62,15 @@ export default function Footer() {
           <div>
             <h3 className="font-heading font-bold text-white mb-5 text-sm uppercase tracking-wider">Quick Links</h3>
             <ul className="space-y-3">
-              {quickLinks.map((l) => (<li key={l.name}><a href={l.href} className="text-gray-400 text-sm hover:text-cyan-400 transition-colors">{l.name}</a></li>))}
+              {quickLinks.map((l) => (
+                <li key={l.name}>
+                  {l.href.startsWith("/") ? (
+                    <Link href={l.href} className="text-gray-400 text-sm hover:text-cyan-400 transition-colors">{l.name}</Link>
+                  ) : (
+                    <a href={l.href} className="text-gray-400 text-sm hover:text-cyan-400 transition-colors">{l.name}</a>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
 
