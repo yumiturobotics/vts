@@ -45,7 +45,6 @@ export default function ContactSection() {
 
       if (serviceId && templateId && publicKey && !serviceId.startsWith("YOUR_")) {
         try {
-          console.log("Sending EmailJS notification...", { serviceId, templateId });
           await emailjs.send(serviceId, templateId, {
             from_name: formData.name,
             from_email: formData.email,
@@ -53,12 +52,9 @@ export default function ContactSection() {
             subject: formData.subject,
             message: `Address: ${formData.address}\n\n${formData.message}`,
           }, publicKey);
-          console.log("EmailJS sent successfully!");
         } catch (emailErr) {
           console.error("EmailJS Error:", emailErr);
         }
-      } else {
-        console.warn("EmailJS not configured:", { serviceId, templateId, publicKey });
       }
 
       setSubmitted(true);

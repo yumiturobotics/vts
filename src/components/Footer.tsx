@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FaLinkedin, FaYoutube, FaPhone, FaEnvelope, FaMapMarkerAlt, FaCheck } from "react-icons/fa";
+import { usePathname } from "next/navigation";
+import { FaLinkedin, FaYoutube, FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
 const quickLinks = [
   { name: "Home", href: "#home" }, { name: "About", href: "#about" }, { name: "Products", href: "#products" },
@@ -12,23 +12,16 @@ const quickLinks = [
 ];
 const productList = ["Humanoid Robots", "Educational Drones", "IoT Kits", "Arduino Kits", "Aeromodelling", "DIY STEM Kits"];
 const socials = [
-  { icon: FaLinkedin, href: "https://www.linkedin.com/company/a-yumitu-robotics-pvt-ltd/about/?viewAsMember=true", color: "#0A66C2" },
-  { icon: FaYoutube, href: "https://youtube.com/@yumiturobotics_0?si=DxJsWs0eqeWK0uXo", color: "#FF0000" },
+  { icon: FaLinkedin, href: "https://www.linkedin.com/company/a-yumitu-robotics-pvt-ltd/about/?viewAsMember=true", label: "LinkedIn" },
+  { icon: FaYoutube, href: "https://youtube.com/@yumiturobotics_0?si=DxJsWs0eqeWK0uXo", label: "YouTube" },
 ];
 
 export default function Footer() {
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
-  const handleSubscribe = () => {
-    if (!email || !email.includes("@")) return;
-    const subscribers = JSON.parse(localStorage.getItem("vts_newsletter") || "[]");
-    subscribers.push({ email, date: new Date().toISOString() });
-    localStorage.setItem("vts_newsletter", JSON.stringify(subscribers));
-    setSubscribed(true);
-    setEmail("");
-    setTimeout(() => setSubscribed(false), 3000);
-  };
+  const resolveHref = (href: string) =>
+    !isHome && href.startsWith("#") ? `/${href}` : href;
 
   return (
     <footer className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #0C1A2E, #070F1C)" }}>
@@ -37,6 +30,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 pt-16 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
 
+          {/* Brand */}
           <div>
             <Link href="/" className="flex items-center gap-3 mb-5">
               <div className="relative h-16 w-52 flex items-center justify-center">
@@ -52,53 +46,69 @@ export default function Footer() {
             </p>
             <div className="flex gap-2.5">
               {socials.map((s) => (
-                <a key={s.color} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.icon === FaLinkedin ? "LinkedIn" : "YouTube"} className="w-9 h-9 rounded-lg flex items-center justify-center text-gray-400 transition-all hover:-translate-y-1" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  className="w-9 h-9 rounded-lg flex items-center justify-center text-gray-400 transition-all hover:-translate-y-1"
+                  style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}
+                >
                   <s.icon className="text-sm" />
                 </a>
               ))}
             </div>
           </div>
 
+          {/* Quick Links */}
           <div>
             <h3 className="font-heading font-bold text-white mb-5 text-sm uppercase tracking-wider">Quick Links</h3>
             <ul className="space-y-3">
-              {quickLinks.map((l) => (
-                <li key={l.name}>
-                  {l.href.startsWith("/") ? (
-                    <Link href={l.href} className="text-gray-400 text-sm hover:text-cyan-400 transition-colors">{l.name}</Link>
-                  ) : (
-                    <a href={l.href} className="text-gray-400 text-sm hover:text-cyan-400 transition-colors">{l.name}</a>
-                  )}
+              {quickLinks.map((l) => {
+                const href = resolveHref(l.href);
+                return (
+                  <li key={l.name}>
+                    {href.startsWith("/") && !href.startsWith("/#") ? (
+                      <Link href={href} className="text-gray-400 text-sm hover:text-cyan-400 transition-colors">{l.name}</Link>
+                    ) : (
+                      <a href={href} className="text-gray-400 text-sm hover:text-cyan-400 transition-colors">{l.name}</a>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+
+          {/* Products */}
+          <div>
+            <h3 className="font-heading font-bold text-white mb-5 text-sm uppercase tracking-wider">Products</h3>
+            <ul className="space-y-3">
+              {productList.map((p) => (
+                <li key={p}>
+                  <a href={resolveHref("#products")} className="text-gray-400 text-sm hover:text-cyan-400 transition-colors">{p}</a>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-heading font-bold text-white mb-5 text-sm uppercase tracking-wider">Products</h3>
-            <ul className="space-y-3">
-              {productList.map((p) => (<li key={p}><a href="#products" className="text-gray-400 text-sm hover:text-cyan-400 transition-colors">{p}</a></li>))}
-            </ul>
-          </div>
-
+          {/* Contact */}
           <div>
             <h3 className="font-heading font-bold text-white mb-5 text-sm uppercase tracking-wider">Contact</h3>
-            <div className="space-y-4 mb-6">
+            <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 text-xs"><FaPhone /></div>
-                <span className="text-gray-400 text-sm">+91 85111 16253</span>
+                <a href="tel:+918511116253" className="text-gray-400 text-sm hover:text-cyan-400 transition-colors">+91 85111 16253</a>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center text-orange-400 text-xs"><FaEnvelope /></div>
-                <span className="text-gray-400 text-sm">yumiturobotics@gmail.com</span>
+                <a href="mailto:yumiturobotics@gmail.com" className="text-gray-400 text-sm hover:text-cyan-400 transition-colors">yumiturobotics@gmail.com</a>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center text-green-400 text-xs"><FaMapMarkerAlt /></div>
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center text-green-400 text-xs flex-shrink-0 mt-0.5"><FaMapMarkerAlt /></div>
                 <span className="text-gray-400 text-sm">No.72, Gandhi Nagar Main, Virugambakkam, Chennai - 600092</span>
               </div>
             </div>
-            
-            
           </div>
         </div>
 

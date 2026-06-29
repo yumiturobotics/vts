@@ -78,7 +78,11 @@ const moreAchievements = [
 ];
 
 export default function AchievementsSection() {
-  const [selected, setSelected] = useState<(typeof achievements[0] & { type: "main" }) | (typeof moreAchievements[0] & { type: "more" }) | null>(null);
+  const [selected, setSelected] = useState<
+    | (typeof achievements[0] & { type: "main" })
+    | (typeof moreAchievements[0] & { type: "more" })
+    | null
+  >(null);
 
   useEffect(() => {
     if (selected) {
@@ -155,7 +159,7 @@ export default function AchievementsSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {moreAchievements.map((item, i) => (
             <motion.div
-              key={i}
+              key={item.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

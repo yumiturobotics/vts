@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { FaRocket, FaLightbulb, FaBullseye, FaUsers, FaGlobeAsia, FaCogs, FaSchool } from "react-icons/fa";
+import Starfield from "@/components/Starfield";
 
 const values = [
   { icon: FaRocket, title: "Innovation First", desc: "We bring cutting-edge technology into classrooms, transforming how students learn and create.", color: "from-cyan-500 to-blue-600" },
@@ -12,7 +13,6 @@ const values = [
   { icon: FaCogs, title: "End-to-End Solutions", desc: "From lab setup to teacher training to competitions — we handle the entire STEM journey.", color: "from-teal-500 to-cyan-600" },
 ];
 
-import Starfield from "@/components/Starfield";
 
 export default function AboutSection() {
   return (

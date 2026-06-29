@@ -72,9 +72,9 @@ export default function HeroSection() {
                 </h1>
                 <p className="text-gray-300 text-base sm:text-lg md:text-xl max-w-2xl mb-6 sm:mb-10 leading-relaxed">{bannerSlides[currentSlide].description}</p>
                 <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
-                  <a href="#stem-labs" className="btn-primary">Explore Labs <FaArrowRight className="text-sm" /></a>
+                  <a href="#services" className="btn-primary">Explore Labs <FaArrowRight className="text-sm" /></a>
                   <a href="#contact" className="btn-secondary">Partner With Us</a>
-                  <a href="#apply" className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold text-sm text-white transition-all hover:scale-105 active:scale-95 shadow-lg"
+                  <a href="#contact" className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold text-sm text-white transition-all hover:scale-105 active:scale-95 shadow-lg"
                     style={{ background: "linear-gradient(135deg, #00B4D8, #0077B6)", boxShadow: "0 4px 12px rgba(0,180,216,0.3)" }}>
                     <FaUserGraduate className="text-sm" /> Apply for Internship
                   </a>

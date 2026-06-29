@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { FaBars, FaTimes, FaUserGraduate, FaBriefcase } from "react-icons/fa";
+import { usePathname } from "next/navigation";
+import { FaBars, FaTimes, FaBriefcase } from "react-icons/fa";
 
 const navItems = [
   { label: "Home", href: "#home" },
@@ -18,12 +19,11 @@ const navItems = [
   { label: "Contact", href: "#contact" },
 ];
 
-// Page-level links (not hash anchors)
-const pageLinks = [
-  { label: "Careers", href: "/careers", icon: FaBriefcase },
-];
+
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [active, setActive] = useState("Home");
@@ -91,33 +91,49 @@ export default function Navbar() {
           </Link>
 
           <div className="hidden lg:flex items-center gap-0.5" onMouseLeave={() => setHovered(null)}>
-            {navItems.map((item) => (
-              <a key={item.label} href={item.href}
-                onMouseEnter={() => setHovered(item.label)}
-                onClick={() => { setActive(item.label); if (item.href.startsWith("#")) { const el = document.querySelector(item.href); if (el) { window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: "smooth" }); } } }}
-                className="relative px-4 py-2.5 text-[13px] font-medium transition-all duration-300 cursor-pointer"
-                style={{ color: active === item.label ? "#fff" : hovered === item.label ? "#00D4FF" : "#9ca3af" }}>
-                {active === item.label && (
-                  <motion.div layoutId="navActive" className="absolute inset-0"
-                    style={{ background: "rgba(0,212,255,0.15)", border: "1px solid rgba(0,212,255,0.3)", borderRadius: "9999px" }}
-                    transition={{ type: "spring", bounce: 0.15, duration: 0.6 }} />
-                )}
-                {hovered === item.label && active !== item.label && (
-                  <motion.div layoutId="navHover" className="absolute inset-0"
-                    style={{
-                      background: "radial-gradient(ellipse at center, rgba(0,212,255,0.12) 0%, rgba(0,212,255,0.04) 60%, transparent 100%)",
-                      border: "1px solid rgba(0,212,255,0.15)",
-                      borderRadius: "50% 45% 55% 50% / 50% 55% 45% 50%",
-                      filter: "blur(0.5px)",
-                    }}
-                    initial={{ scale: 0.6, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.6, opacity: 0 }}
-                    transition={{ type: "spring", bounce: 0.3, duration: 0.5 }} />
-                )}
-                <span className="relative z-10">{item.label}</span>
-              </a>
-            ))}
+            {navItems.map((item) => {
+              // On non-home pages, hash links need to navigate to home first
+              const resolvedHref = !isHome && item.href.startsWith("#")
+                ? `/${item.href}`
+                : item.href;
+              return (
+                <a key={item.label}
+                  href={resolvedHref}
+                  onMouseEnter={() => setHovered(item.label)}
+                  onClick={(e) => {
+                    setActive(item.label);
+                    if (isHome && item.href.startsWith("#")) {
+                      e.preventDefault();
+                      const el = document.querySelector(item.href);
+                      if (el) {
+                        window.scrollTo({ top: (el as HTMLElement).getBoundingClientRect().top + window.scrollY - 80, behavior: "smooth" });
+                      }
+                    }
+                  }}
+                  className="relative px-4 py-2.5 text-[13px] font-medium transition-all duration-300 cursor-pointer"
+                  style={{ color: active === item.label ? "#fff" : hovered === item.label ? "#00D4FF" : "#9ca3af" }}>
+                  {active === item.label && (
+                    <motion.div layoutId="navActive" className="absolute inset-0"
+                      style={{ background: "rgba(0,212,255,0.15)", border: "1px solid rgba(0,212,255,0.3)", borderRadius: "9999px" }}
+                      transition={{ type: "spring", bounce: 0.15, duration: 0.6 }} />
+                  )}
+                  {hovered === item.label && active !== item.label && (
+                    <motion.div layoutId="navHover" className="absolute inset-0"
+                      style={{
+                        background: "radial-gradient(ellipse at center, rgba(0,212,255,0.12) 0%, rgba(0,212,255,0.04) 60%, transparent 100%)",
+                        border: "1px solid rgba(0,212,255,0.15)",
+                        borderRadius: "50% 45% 55% 50% / 50% 55% 45% 50%",
+                        filter: "blur(0.5px)",
+                      }}
+                      initial={{ scale: 0.6, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0.6, opacity: 0 }}
+                      transition={{ type: "spring", bounce: 0.3, duration: 0.5 }} />
+                  )}
+                  <span className="relative z-10">{item.label}</span>
+                </a>
+              );
+            })}
           </div>
 
           <div className="flex items-center gap-3">
@@ -158,21 +174,27 @@ export default function Navbar() {
               </div>
 
               <div className="space-y-1.5 mt-4">
-                {navItems.map((item, i) => (
-                  <motion.a key={item.label} href={item.href} onClick={() => { setActive(item.label); setMobileOpen(false); }}
-                    initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04, duration: 0.3 }}
-                    className="flex items-center gap-3 px-5 py-4 rounded-2xl text-sm font-medium transition-all relative overflow-hidden"
-                    style={{
-                      background: active === item.label ? "linear-gradient(135deg, rgba(0,212,255,0.15), rgba(14,74,110,0.3))" : "transparent",
-                      border: active === item.label ? "1px solid rgba(0,212,255,0.25)" : "1px solid transparent",
-                      color: active === item.label ? "#fff" : "#9ca3af",
-                    }}>
-                    {active === item.label && (
-                      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 rounded-full bg-gradient-to-b from-cyan-400 to-blue-500" />
-                    )}
-                    <span className="relative z-10">{item.label}</span>
-                  </motion.a>
-                ))}
+                {navItems.map((item, i) => {
+                  const resolvedHref = !isHome && item.href.startsWith("#")
+                    ? `/${item.href}`
+                    : item.href;
+                  return (
+                    <motion.a key={item.label} href={resolvedHref}
+                      onClick={() => { setActive(item.label); setMobileOpen(false); }}
+                      initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04, duration: 0.3 }}
+                      className="flex items-center gap-3 px-5 py-4 rounded-2xl text-sm font-medium transition-all relative overflow-hidden"
+                      style={{
+                        background: active === item.label ? "linear-gradient(135deg, rgba(0,212,255,0.15), rgba(14,74,110,0.3))" : "transparent",
+                        border: active === item.label ? "1px solid rgba(0,212,255,0.25)" : "1px solid transparent",
+                        color: active === item.label ? "#fff" : "#9ca3af",
+                      }}>
+                      {active === item.label && (
+                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 rounded-full bg-gradient-to-b from-cyan-400 to-blue-500" />
+                      )}
+                      <span className="relative z-10">{item.label}</span>
+                    </motion.a>
+                  );
+                })}
 
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.3 }}>
                   <Link href="/careers" onClick={() => setMobileOpen(false)}

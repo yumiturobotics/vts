@@ -103,7 +103,7 @@ const jobs: JobOpening[] = [
   },
 
   {
-    id: "Digital marketing and social media manager",
+    id: "digital-marketing-social-media-manager",
     title: "Digital Marketing and Social Media Manager",
     department: "Marketing & Communications",
     location: "chennai and pondicherry",
@@ -223,8 +223,8 @@ export default function JobListings() {
                       className="px-3 py-1 rounded-full text-xs font-semibold"
                       style={{
                         background: job.accent,
-                        color: i === 0 ? "#1d4ed8" : "#c2410c",
-                        border: `1px solid ${i === 0 ? "rgba(59,130,246,0.2)" : "rgba(245,124,0,0.2)"}`,
+                        color: job.color.includes("blue") || job.color.includes("cyan") ? "#1d4ed8" : job.color.includes("pink") || job.color.includes("rose") ? "#9d174d" : "#c2410c",
+                        border: `1px solid ${job.color.includes("blue") || job.color.includes("cyan") ? "rgba(59,130,246,0.2)" : job.color.includes("pink") || job.color.includes("rose") ? "rgba(244,114,182,0.2)" : "rgba(245,124,0,0.2)"}`,
                       }}
                     >
                       {job.openings} Opening{job.openings > 1 ? "s" : ""}

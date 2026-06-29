@@ -97,6 +97,16 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/sakthi-priya-v/",
     email: "mailto:sakthipriyamechatronics@gmail.com"
   },
+  {
+    name: "Mr. Dharmadurai",
+    role: "Marketing Executive",
+    desc: "Driving outreach and engagement to promote VTS programs and STEM education initiatives.",
+    image: "/images/dharmadurai.png",
+    gradient: "from-orange-500 to-amber-600",
+    borderColor: "rgba(245,124,0,0.2)",
+   
+    email: "mailto:ddraavan375@gmail.com"
+  },
 ];
 
 const interns = [
