@@ -90,7 +90,7 @@ const teamMembers = [
   {
     name: "Ms. Sakthi Priya V",
     role: "STEM Trainer",
-    desc: "Training students and educators in robotics, IoT, and programming across partner schools.",
+    desc: "stem trainer and mentor, inspiring students to explore robotics and coding through hands-on learning.",
     image: "/images/SAKTHI PRIYA V.jpeg",
     gradient: "from-teal-500 to-cyan-600",
     borderColor: "rgba(87, 187, 78, 0.8)",
