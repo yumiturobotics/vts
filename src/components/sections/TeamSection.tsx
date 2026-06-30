@@ -97,6 +97,27 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/sakthi-priya-v/",
     email: "mailto:sakthipriyamechatronics@gmail.com"
   },
+  
+     {
+    name: "Ms.Devi Dharshini M",
+    role: "Robotics Engineer",
+    desc: "Training students and educators in robotics, IoT, and programming across partner schools",
+    image: "/images/intern1.jpeg",
+    gradient: "from-teal-500 to-cyan-600",
+    borderColor: "rgba(182, 22, 56, 0.8)",
+    linkedin: "https://www.linkedin.com/in/devi-dharshini-40698428a/",
+    email: "mailto:rmdevidharshini@gmail.com"
+  },
+  {
+    name :"Mr.Mogan J",
+    role: "Embedded System Engineer",
+    desc: " Embedded system engineer and robotics engineer .",
+    image: "/images/mogan.jpeg",
+    gradient: "from-teal-500 to-cyan-600",
+    borderColor: "rgba(173, 97, 157, 0.8)",
+    linkedin: "https://www.linkedin.com/in/mogan-janarthanan/",
+    email: "mailto:moganjana11@gmail.com" 
+  },
   {
     name: "Mr. Dharmadurai",
     role: "Marketing Executive",
@@ -104,28 +125,20 @@ const teamMembers = [
     image: "/images/dharmadurai.png",
     gradient: "from-orange-500 to-amber-600",
     borderColor: "rgba(245,124,0,0.2)",
-   
     email: "mailto:ddraavan375@gmail.com"
   },
 ];
 
 const interns = [
-  {
-    name: "Devi Dharshini M",
-    role: "Robotics Engineering Intern",
-    image: "/images/intern1.jpeg",
-    gradient: "from-orange-400 to-amber-500",
-    borderColor: "rgba(245,124,0,0.3)",
-  },
-  
-  {
-    name: "Mogan J",
-    role: "IoT Intern",
-    image: "/images/mogan.jpeg",
-    gradient: "from-purple-400 to-violet-500",
-    borderColor: "rgba(164, 185, 87, 0.57)",
+  // {},
+  // {
+  //   name: "Mogan J",
+  //   role: "IoT Intern",
+  //   image: "/images/mogan.jpeg",
+  //   gradient: "from-purple-400 to-violet-500",
+  //   borderColor: "rgba(164, 185, 87, 0.57)",
     
-  },
+  // },
 ];
 
 export default function TeamSection() {
