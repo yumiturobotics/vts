@@ -130,17 +130,7 @@ const teamMembers = [
   },
 ];
 
-const interns = [
-  // {},
-  // {
-  //   name: "Mogan J",
-  //   role: "IoT Intern",
-  //   image: "/images/mogan.jpeg",
-  //   gradient: "from-purple-400 to-violet-500",
-  //   borderColor: "rgba(164, 185, 87, 0.57)",
-    
-  // },
-];
+const interns: any[] = [];
 
 export default function TeamSection() {
   const [showForm, setShowForm] = useState(false);
@@ -190,12 +180,15 @@ export default function TeamSection() {
       }
 
       const { error } = await supabase.from("job_applications").insert([{
-        name: formData.name,
+        job_id: "internship",
+        job_title: "Robotics / IoT Intern",
+        full_name: formData.name,
         email: formData.email,
         phone: formData.phone,
-        college: formData.college,
-        linkedin: formData.linkedin,
-        message: formData.message,
+        location: formData.college,
+        portfolio_url: formData.linkedin || null,
+        cover_letter: formData.message,
+        current_role: "Student",
         resume_url
       }]);
 

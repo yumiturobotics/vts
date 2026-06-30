@@ -58,3 +58,56 @@ CREATE POLICY "Allow anon resume upload"
 CREATE POLICY "Allow public resume read"
   ON storage.objects FOR SELECT TO anon
   USING (bucket_id = 'resumes');
+
+-- ============================================================
+--  3. Contacts Table (Contact Form Submissions)
+-- ============================================================
+
+CREATE TABLE IF NOT EXISTS contacts (
+  id             UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name           TEXT NOT NULL,
+  email          TEXT NOT NULL,
+  phone          TEXT NOT NULL,
+  address        TEXT NOT NULL,
+  subject        TEXT NOT NULL,
+  message        TEXT NOT NULL,
+  created_at     TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Enable RLS
+ALTER TABLE contacts ENABLE ROW LEVEL SECURITY;
+
+-- Policy: Allow public insertion (contact form submissions)
+CREATE POLICY "Allow public inserts" ON contacts
+  FOR INSERT TO anon WITH CHECK (true);
+
+-- Policy: Allow only authenticated admins to select
+CREATE POLICY "Allow admin read" ON contacts
+  FOR SELECT USING (auth.role() = 'authenticated');
+
+-- ============================================================
+--  4. Product Inquiries Table (Product Enquiry Form Submissions)
+-- ============================================================
+
+CREATE TABLE IF NOT EXISTS product_inquiries (
+  id             UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name           TEXT NOT NULL,
+  email          TEXT NOT NULL,
+  phone          TEXT NOT NULL,
+  product        TEXT NOT NULL,
+  quantity       INTEGER NOT NULL DEFAULT 1,
+  delivery_date  DATE,
+  created_at     TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Enable RLS
+ALTER TABLE product_inquiries ENABLE ROW LEVEL SECURITY;
+
+-- Policy: Allow public insertion (enquiry submissions)
+CREATE POLICY "Allow public inserts" ON product_inquiries
+  FOR INSERT TO anon WITH CHECK (true);
+
+-- Policy: Allow only authenticated admins to select
+CREATE POLICY "Allow admin read" ON product_inquiries
+  FOR SELECT USING (auth.role() = 'authenticated');
+
