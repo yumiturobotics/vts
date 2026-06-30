@@ -86,6 +86,7 @@ const teamMembers = [
     gradient: "from-teal-500 to-cyan-600",
     borderColor: "rgba(133, 204, 74, 0.2)",
     email: "mailto:selvipooja61@gmail.com"
+    
   },
   {
     name: "Ms. Sakthi Priya V",
